@@ -18,5 +18,6 @@
 	email = namatyage@gmail.com
 [pull]
 	rebase = true
-[push]
-	default = simple
+# oops! git < 1.8 raise error.
+# [push]
+# 	default = simple

@@ -33,7 +33,7 @@ compinit -u
 export EDITOR=vim
 
 # alias
-alias ls="ls --color"
+alias ls="ls --color=auto"
 alias ll="ls -alF"
 alias g="git"
 alias tmux="tmux -2"
