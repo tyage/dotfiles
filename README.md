@@ -5,7 +5,7 @@ my dotfiles
 ## install
 ```
 gem install homesick
-homesick clone tyage
+homesick clone tyage/dotfiles
 homesick symlink
 ```
 
