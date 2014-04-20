@@ -33,7 +33,12 @@ compinit -u
 export EDITOR=vim
 
 # alias
-alias ls="ls --color=auto"
+if [ $uname = "Darwin" ]; then
+  alias ls="ls -G";
+fi
+if [ $uname = "Linux" ]; then
+  alias ls="ls --color=auto";
+fi
 alias ll="ls -alF"
 alias g="git"
 alias tmux="tmux -2"
