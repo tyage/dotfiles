@@ -17,7 +17,7 @@ if [ $uname = "Darwin" ]; then
 fi
 
 # color
-if [ -x `which dircolors` ]; then
+if [ -x "`which dircolors`" ]; then
   eval "$(dircolors -b)"
 fi
 
