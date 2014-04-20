@@ -19,5 +19,5 @@
 [pull]
 	rebase = true
 # oops! git < 1.8 raise error.
-# [push]
-# 	default = simple
+[push]
+	default = simple
