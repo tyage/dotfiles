@@ -42,6 +42,7 @@ fi
 alias ll="ls -alF"
 alias g="git"
 alias tmux="tmux -2"
+alias less='less --tabs=4'
 
 # rbenv
 if [ -d $HOME/.rbenv/ ]; then
