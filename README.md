@@ -3,8 +3,6 @@
 my dotfiles
 
 ## requirements
-- zsh
-   - oh-my-zsh
 - gem
    - homesick
 
