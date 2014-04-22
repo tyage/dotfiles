@@ -14,10 +14,12 @@ darwin*)
   GTK_IM_MODULE=uim; export GTK_IM_MODULE
   XMODIFIERS="@im=uim"; export XMODIFIERS
 
+  # alias
   alias ls="ls -G";
   ;;
 # GNU
 linx*)
+  # alias
   alias ls="ls --color=auto";
   ;;
 esac
