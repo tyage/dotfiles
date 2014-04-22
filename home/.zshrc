@@ -39,14 +39,6 @@ if [ -x "`which dircolors`" ]; then
   eval "$(dircolors -b)"
 fi
 
-# auto complete
-if [ -d /usr/local/share/zsh/site-functions ]; then
-  fpath=(/usr/local/share/zsh/site-functions $fpath)
-fi
-autoload -Uz zmv
-autoload -U compinit
-compinit -u
-
 # editor
 export EDITOR=vim
 
@@ -54,16 +46,3 @@ export EDITOR=vim
 alias g="git"
 alias tmux="tmux -2"
 alias less='less --tabs=4'
-
-# rbenv
-if [ -d $HOME/.rbenv/ ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
-
-# sbt
-if [ -d /usr/local/sbt ]; then
-  export SBT_HOME=/usr/local/sbt
-  export PATH=$PATH:$SBT_HOME/bin
-fi
-
