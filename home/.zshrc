@@ -1,10 +1,9 @@
 # lang
 export LANG=ja_JP.UTF-8
 
-local uname=`uname`
-
-# OS X
-if [ $uname = "Darwin" ]; then
+case "$OSTYPE" in
+# BSD (contains Mac)
+darwin*)
   export PATH=/usr/local/bin:$PATH
   export PGDATA=/usr/local/var/postgres
 
@@ -14,7 +13,14 @@ if [ $uname = "Darwin" ]; then
   # IME in XQuartz
   GTK_IM_MODULE=uim; export GTK_IM_MODULE
   XMODIFIERS="@im=uim"; export XMODIFIERS
-fi
+
+  alias ls="ls -G";
+  ;;
+# GNU
+linx*)
+  alias ls="ls --color=auto";
+  ;;
+esac
 
 # color
 if [ -x "`which dircolors`" ]; then
@@ -33,12 +39,6 @@ compinit -u
 export EDITOR=vim
 
 # alias
-if [ $uname = "Darwin" ]; then
-  alias ls="ls -G";
-fi
-if [ $uname = "Linux" ]; then
-  alias ls="ls --color=auto";
-fi
 alias ll="ls -alF"
 alias g="git"
 alias tmux="tmux -2"
