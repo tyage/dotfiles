@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
-plugins=(git)
+plugins=(git brew gem github ruby rbenv alias mac ubuntu)
 
 source $ZSH/oh-my-zsh.sh
 
