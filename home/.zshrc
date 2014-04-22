@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wedisagree"
 
-plugins=(git brew gem github ruby rbenv alias mac ubuntu)
+plugins=(git brew gem github ruby rbenv alias mac)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -51,7 +51,6 @@ compinit -u
 export EDITOR=vim
 
 # alias
-alias ll="ls -alF"
 alias g="git"
 alias tmux="tmux -2"
 alias less='less --tabs=4'
