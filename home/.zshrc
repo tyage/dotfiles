@@ -1,10 +1,20 @@
+# oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# path
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # lang
 export LANG=ja_JP.UTF-8
 
 case "$OSTYPE" in
 # BSD (contains Mac)
 darwin*)
-  export PATH=/usr/local/bin:$PATH
   export PGDATA=/usr/local/var/postgres
 
   # https://langui.sh/2014/03/10/wunused-command-line-argument-hard-error-in-future-is-a-harsh-mistress/
