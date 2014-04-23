@@ -7,7 +7,7 @@ plugins=(alias mac git brew gem github ruby rbenv)
 source $ZSH/oh-my-zsh.sh
 
 # path
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/opt/rbenv/shims:$HOME/.rbenv/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # lang
 export LANG=ja_JP.UTF-8
