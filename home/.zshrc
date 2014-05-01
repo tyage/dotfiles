@@ -26,9 +26,6 @@ darwin*)
 
   # alias
   alias ls="ls -G";
-
-  # docker
-  export DOCKER_HOST=tcp://
   ;;
 # GNU
 linx*)
