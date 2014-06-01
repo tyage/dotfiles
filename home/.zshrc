@@ -46,3 +46,4 @@ export EDITOR=vim
 alias g="git"
 alias tmux="tmux -2"
 alias less='less --tabs=4'
+alias javac="javac -J-Dfile.encoding=UTF8"
