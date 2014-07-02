@@ -28,7 +28,7 @@ darwin*)
   alias ls="ls -G";
   ;;
 # GNU
-linx*)
+linux*)
   # alias
   alias ls="ls --color=auto --show-control-chars";
   ;;
