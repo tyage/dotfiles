@@ -30,7 +30,7 @@ darwin*)
 # GNU
 linx*)
   # alias
-  alias ls="ls --color=auto";
+  alias ls="ls --color=auto --show-control-chars";
   ;;
 esac
 
