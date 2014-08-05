@@ -25,12 +25,15 @@ darwin*)
   XMODIFIERS="@im=uim"; export XMODIFIERS
 
   # alias
-  alias ls="ls -G";
+  alias ls="ls -G"
+
+  # docker config
+  export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
   ;;
 # GNU
 linux*)
   # alias
-  alias ls="ls --color=auto --show-control-chars";
+  alias ls="ls --color=auto --show-control-chars"
   ;;
 esac
 
@@ -53,3 +56,4 @@ alias g="git"
 alias tmux="tmux -2"
 alias less='less --tabs=4'
 alias javac="javac -J-Dfile.encoding=UTF8"
+
