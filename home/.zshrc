@@ -26,9 +26,6 @@ darwin*)
 
   # alias
   alias ls="ls -G"
-
-  # docker config
-  export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
   ;;
 # GNU
 linux*)
