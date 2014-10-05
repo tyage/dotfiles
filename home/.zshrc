@@ -10,7 +10,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # lang
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 
 case "$OSTYPE" in
 # BSD (contains Mac)
