@@ -55,7 +55,7 @@ alias less='less --tabs=4'
 alias javac="javac -J-Dfile.encoding=UTF8"
 
 # local zshrc
-if [ -x "$HOME/.zshrc-local" ]; then
+if [ -f "$HOME/.zshrc-local" ]; then
   source "$HOME/.zshrc-local"
 fi
 
