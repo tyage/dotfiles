@@ -29,6 +29,9 @@ darwin*)
 
   # java home
   export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+
+  # android home
+  export ANDROID_HOME=/usr/local/opt/android-sdk
   ;;
 # GNU
 linux*)
