@@ -66,7 +66,7 @@ if [ -f "$HOME/.zshrc-local" ]; then
 fi
 
 # neovim
-if [ -x "`which nvim`"]; then
+if [ -x "`which nvim`" ]; then
   alias vim="nvim"
 fi
 
