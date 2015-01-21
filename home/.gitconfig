@@ -23,3 +23,6 @@
 	default = simple
 [alias]
 	show-ignored = ls-files --exclude-standard --others --ignored
+[core]
+	precomposeunicode = true
+	quotepath = false
