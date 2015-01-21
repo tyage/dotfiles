@@ -27,11 +27,6 @@ darwin*)
   # alias
   alias ls="ls -G"
 
-  # java home
-  export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-
-  # android home
-  export ANDROID_HOME=/usr/local/opt/android-sdk
   ;;
 # GNU
 linux*)
@@ -68,5 +63,10 @@ fi
 # neovim
 if [ -x "`which nvim`" ]; then
   alias vim="nvim"
+fi
+
+# android home
+if [ -f "/usr/local/opt/android-sdk" ]; then
+  export ANDROID_HOME=/usr/local/opt/android-sdk
 fi
 
