@@ -70,3 +70,6 @@ if [ -f "/usr/local/opt/android-sdk" ]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
 fi
 
+# golang
+export GOPATH=~/.gopath
+export PATH=$GOPATH/bin:$PATH
