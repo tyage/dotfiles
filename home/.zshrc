@@ -34,7 +34,7 @@ linux*)
   alias ls="ls --color=auto --show-control-chars"
 
   # rbenv plugin is broken in linux
-  eval "$(rbenv init -)
+  eval "$(rbenv init -)"
   ;;
 esac
 
