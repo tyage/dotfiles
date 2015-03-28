@@ -2,6 +2,8 @@
 
 my dotfiles
 
+[How to setup](https://github.com/tyage/dotfiles/wiki)
+
 ## requirements
 - gem
    - homesick
