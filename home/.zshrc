@@ -35,11 +35,11 @@ darwin*)
 linux*)
   # alias
   alias ls="ls --color=auto --show-control-chars"
-
-  # rbenv plugin is broken in linux
-  eval "$(rbenv init -)"
   ;;
 esac
+
+# rbenv plugin is broken
+eval "$(rbenv init -)"
 
 # perl
 if [ -x "$HOME/perl5" ]; then
