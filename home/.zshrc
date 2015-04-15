@@ -79,3 +79,5 @@ fi
 # golang
 export GOPATH=~/.gopath
 export PATH=$GOPATH/bin:$PATH
+
+bindkey -v
