@@ -27,6 +27,9 @@ darwin*)
   # alias
   alias ls="ls -G"
 
+  # Install apps in /Applications with homebrew cask
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
   ;;
 # GNU
 linux*)
