@@ -80,4 +80,7 @@ fi
 export GOPATH=~/.gopath
 export PATH=$GOPATH/bin:$PATH
 
+# bindkey
 bindkey -v
+bindkey '^R' history-incremental-search-backward
+
