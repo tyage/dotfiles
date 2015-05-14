@@ -1,0 +1,1 @@
+../../../vendor/mathiasbynens-dotfiles/.vim/colors/solarized.vim
