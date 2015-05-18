@@ -26,7 +26,7 @@ darwin*)
 
   # alias
   alias ls="ls -G"
-  alias brew-upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
+  alias cask-upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
   # Install apps in /Applications with homebrew cask
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
