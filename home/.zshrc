@@ -103,3 +103,8 @@ export PATH=$GOPATH/bin:$PATH
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+# opam
+if [ -x "`which opam`" ]; then
+  eval $(opam config env)
+fi
+
