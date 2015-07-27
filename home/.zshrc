@@ -33,6 +33,7 @@ darwin*)
       if echo "$info"| grep -q "Not installed";then
         brew cask install $a
       fi
+      info=$(brew cask info $a)
       current=$(echo "$info"|grep "${caskroom}/${a}"|cut -d' ' -f1)
       for dir in $(ls ${caskroom}/${a});do
         testdir="${caskroom}/${a}/${dir}"
