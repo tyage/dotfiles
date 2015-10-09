@@ -24,23 +24,29 @@ darwin*)
   GTK_IM_MODULE=uim; export GTK_IM_MODULE
   XMODIFIERS="@im=uim"; export XMODIFIERS
 
-  # http://qiita.com/petitviolet/items/b1e8b5139169dd530919
+  # original: http://rcmdnk.github.io/blog/2014/09/01/computer-mac-homebrew/
   function cask-upgrade() {
     caskroom="/opt/homebrew-cask/Caskroom"
     apps=($(brew cask list))
     for a in ${apps[@]};do
       info=$(brew cask info $a)
       if echo "$info"| grep -q "Not installed";then
-        brew cask install $a
+        echo -n "want to upgrade $a ? [Y/n]: "
+        read ANSWER
+        case $ANSWER in
+          "Y" | "Yes" | "y" | "yes" )
+            brew cask install $a
+            info=$(brew cask info $a)
+            current=$(echo "$info"|grep "${caskroom}/${a}"|cut -d' ' -f1)
+            for dir in $(ls ${caskroom}/${a});do
+              testdir="${caskroom}/${a}/${dir}"
+              if [ "$testdir" != "$current" ];then
+                rm -rf "$testdir"
+              fi
+            done
+          ;;
+        esac
       fi
-      info=$(brew cask info $a)
-      current=$(echo "$info"|grep "${caskroom}/${a}"|cut -d' ' -f1)
-      for dir in $(ls ${caskroom}/${a});do
-        testdir="${caskroom}/${a}/${dir}"
-        if [ "$testdir" != "$current" ];then
-          rm -rf "$testdir"
-        fi
-      done
     done
   }
 
