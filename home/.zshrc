@@ -11,6 +11,8 @@ export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:
 
 # lang
 export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 case "$OSTYPE" in
 # BSD (contains Mac)
