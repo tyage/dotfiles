@@ -61,6 +61,8 @@ darwin*)
 linux*)
   # alias
   alias ls="ls --color=auto --show-control-chars"
+  alias pbcopy="xsel --clipboard --input"
+  alias pbpaste="xsel --clipboard --output"
   ;;
 esac
 
