@@ -6,10 +6,11 @@ echo "install brew"
 
 # install packages
 echo "install packages"
-brew install git tig vim wireshark p7zip node wget nginx peco zsh mackerel-agent
+brew install git tig vim wireshark p7zip node wget nginx peco zsh
 
 # chsh for zsh
 echo "chsh for zsh"
+sudo echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh
 
 # setup for ruby
@@ -24,8 +25,17 @@ echo "install applications"
 brew cask install gyazo skype dropbox slack dash night-owl virtualbox atom tunnelblick firefox google-japanese-ime gnucash vlc
 
 # homesick
+echo "homesick"
 gem install homesick
 homesick clone tyage/dotfiles
 homesick symlink
 
-# setup for atom
+# install mackerel-agent
+echo "install mackerel agent"
+brew tap mackerelio/mackerel-agent
+brew install mackerel-agent
+
+# install source code pro
+echo "install source code pro"
+brew tap caskroom/fonts
+brew cask install font-source-code-pro
