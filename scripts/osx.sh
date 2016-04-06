@@ -22,7 +22,7 @@ gem install bundle
 
 # install applications
 echo "install applications"
-brew cask install gyazo skype dropbox slack dash night-owl virtualbox atom tunnelblick firefox google-japanese-ime gnucash vlc google-chrome
+brew cask install gyazo skype dropbox slack dash night-owl virtualbox atom tunnelblick firefox google-japanese-ime gnucash vlc google-chrome google-drive
 
 # homesick
 echo "homesick"
