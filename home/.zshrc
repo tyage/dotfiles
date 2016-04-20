@@ -135,3 +135,8 @@ if [ -x "`which peco`" ]; then
   zle -N peco-select-history
   bindkey '^r' peco-select-history
 fi
+
+# phpenv
+if [ -x "`which phpenv`" ]; then
+  eval $(phpenv init -)
+fi
