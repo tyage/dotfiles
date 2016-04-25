@@ -7,7 +7,7 @@ plugins=(alias mac git brew gem github ruby rbenv)
 source $ZSH/oh-my-zsh.sh
 
 # path
-export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/.phpenv/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # lang
 export LANG=en_US.UTF-8
@@ -137,6 +137,7 @@ if [ -x "`which peco`" ]; then
 fi
 
 # phpenv
+export PATH=$PATH:$HOME/.phpenv/bin
 if [ -x "`which phpenv`" ]; then
   eval $(phpenv init -)
 fi
