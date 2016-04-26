@@ -139,5 +139,5 @@ fi
 # phpenv
 export PATH=$PATH:$HOME/.phpenv/bin
 if [ -x "`which phpenv`" ]; then
-  eval $(phpenv init -)
+  eval "$(phpenv init -)"
 fi
