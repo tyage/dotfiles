@@ -24,40 +24,36 @@ darwin*)
   GTK_IM_MODULE=uim; export GTK_IM_MODULE
   XMODIFIERS="@im=uim"; export XMODIFIERS
 
-  # original: http://rcmdnk.github.io/blog/2014/09/01/computer-mac-homebrew/
   function cask-upgrade() {
     caskroom=$(brew --prefix)/Caskroom
     apps=($(brew cask list))
-    for a in ${apps[@]};do
-      info=$(brew cask info $a)
-      if echo "$info"| grep -q "Not installed";then
-        version=$(echo "$info" | head -n 1)
-        echo -n "want to upgrade $a to $version ? [Y/n]: "
-        read ANSWER
-        case $ANSWER in
-          "Y" | "Yes" | "y" | "yes" )
-            brew cask install $a
-            info=$(brew cask info $a)
-            current=$(echo "$info"|grep "${caskroom}/${a}"|cut -d' ' -f1)
-            for dir in $(ls ${caskroom}/${a});do
-              testdir="${caskroom}/${a}/${dir}"
-              if [ "$testdir" != "$current" ];then
-                echo "delete $testdir"
-                rm -rf "$testdir"
-              fi
-            done
-          ;;
-        esac
+    for app in ${apps[@]};do
+      info=$(brew cask info $app)
+      if [ ! echo "$info"| grep -q "Not installed" ];then
+        continue
       fi
+      version=$(echo "$info" | head -n 1)
+      echo -n "want to upgrade $app to $version ? [Y/n]: "
+      read ANSWER
+      case $ANSWER in
+        "Y" | "Yes" | "y" | "yes" )
+          brew cask install $app
+          info=$(brew cask info $app)
+          current=$(echo "$info"|grep "${caskroom}/${app}"|cut -d' ' -f1)
+          for dir in $(ls ${caskroom}/${app});do
+            testdir="${caskroom}/${app}/${dir}"
+            if [ "$testdir" != "$current" ];then
+              echo "delete $testdir"
+              rm -rf "$testdir"
+            fi
+          done
+        ;;
+      esac
     done
   }
 
   # alias
   alias ls="ls -G"
-
-  # Install apps in /Applications with homebrew cask
-  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
   ;;
 # GNU
 linux*)
