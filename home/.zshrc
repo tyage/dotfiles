@@ -29,7 +29,7 @@ darwin*)
     apps=($(brew cask list))
     for app in ${apps[@]};do
       info=$(brew cask info $app)
-      if [ ! echo "$info"| grep -q "Not installed" ];then
+      if [ ! "$(echo "$info"| grep "Not installed")" ];then
         continue
       fi
       version=$(echo "$info" | head -n 1)
