@@ -31,7 +31,8 @@ darwin*)
     for a in ${apps[@]};do
       info=$(brew cask info $a)
       if echo "$info"| grep -q "Not installed";then
-        echo -n "want to upgrade $a ? [Y/n]: "
+        version=$(echo "$info" | head -n 1)
+        echo -n "want to upgrade $a to $version ? [Y/n]: "
         read ANSWER
         case $ANSWER in
           "Y" | "Yes" | "y" | "yes" )
