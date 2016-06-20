@@ -26,7 +26,7 @@ darwin*)
 
   # original: http://rcmdnk.github.io/blog/2014/09/01/computer-mac-homebrew/
   function cask-upgrade() {
-    caskroom="/opt/homebrew-cask/Caskroom"
+    caskroom=$(brew --prefix)/Caskroom
     apps=($(brew cask list))
     for a in ${apps[@]};do
       info=$(brew cask info $a)
@@ -41,6 +41,7 @@ darwin*)
             for dir in $(ls ${caskroom}/${a});do
               testdir="${caskroom}/${a}/${dir}"
               if [ "$testdir" != "$current" ];then
+                echo "delete $testdir"
                 rm -rf "$testdir"
               fi
             done
