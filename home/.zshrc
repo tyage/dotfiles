@@ -37,7 +37,7 @@ darwin*)
       read ANSWER
       case $ANSWER in
         "Y" | "Yes" | "y" | "yes" )
-          brew cask install $app
+          brew cask install $app --force
           info=$(brew cask info $app)
           current=$(echo "$info"|grep "${caskroom}/${app}"|cut -d' ' -f1)
           for dir in $(ls ${caskroom}/${app});do
