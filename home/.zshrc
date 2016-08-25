@@ -39,8 +39,9 @@ darwin*)
         "Y" | "Yes" | "y" | "yes" )
           brew cask install $app --force
           for dir in $installed; do
-            echo "delete $testdir"
-            rm -rf "$testdir"
+            olddir=$caskroom/$app/$dir
+            echo "delete $olddir"
+            rm -rf "$olddir"
           done
         ;;
       esac
