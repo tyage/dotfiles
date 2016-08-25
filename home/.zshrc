@@ -29,8 +29,8 @@ darwin*)
     apps=( $(brew cask list) )
     for app in ${apps[@]}; do
       version=$(brew cask info $app | sed -n '1p' | sed -n 's/^.*: \(.*\)$/\1/p')
-      installed=( $(ls $(caskroom)/$cask) )
-      if [ " ${installed[@]} " == *" $version"* ]; then
+      installed=( $(ls $caskroom/$app) )
+      if [[ " ${installed[@]} " == *" $version"* ]]; then
         continue
       fi
       echo -n "want to upgrade $app to $version ? [Y/n]: "
