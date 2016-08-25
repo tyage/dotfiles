@@ -26,26 +26,21 @@ darwin*)
 
   function cask-upgrade() {
     caskroom=$(brew --prefix)/Caskroom
-    apps=($(brew cask list))
-    for app in ${apps[@]};do
-      info=$(brew cask info $app)
-      if [ ! "$(echo "$info"| grep "Not installed")" ];then
+    apps=( $(brew cask list) )
+    for app in ${apps[@]}; do
+      version=$(brew cask info $app | sed -n '1p' | sed -n 's/^.*: \(.*\)$/\1/p')
+      installed=( $(ls $(caskroom)/$cask) )
+      if [ " ${installed[@]} " == *" $version"* ]; then
         continue
       fi
-      version=$(echo "$info" | head -n 1)
       echo -n "want to upgrade $app to $version ? [Y/n]: "
       read ANSWER
       case $ANSWER in
         "Y" | "Yes" | "y" | "yes" )
           brew cask install $app --force
-          info=$(brew cask info $app)
-          current=$(echo "$info"|grep "${caskroom}/${app}"|cut -d' ' -f1)
-          for dir in $(ls ${caskroom}/${app});do
-            testdir="${caskroom}/${app}/${dir}"
-            if [ "$testdir" != "$current" ];then
-              echo "delete $testdir"
-              rm -rf "$testdir"
-            fi
+          for dir in $installed; do
+            echo "delete $testdir"
+            rm -rf "$testdir"
           done
         ;;
       esac
