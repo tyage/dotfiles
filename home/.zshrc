@@ -12,54 +12,6 @@ export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:
 # lang
 export LANG=en_US.UTF-8
 
-case "$OSTYPE" in
-# BSD (contains Mac)
-darwin*)
-  export PGDATA=/usr/local/var/postgres
-
-  # https://langui.sh/2014/03/10/wunused-command-line-argument-hard-error-in-future-is-a-harsh-mistress/
-  export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
-
-  # IME in XQuartz
-  GTK_IM_MODULE=uim; export GTK_IM_MODULE
-  XMODIFIERS="@im=uim"; export XMODIFIERS
-
-  function cask-upgrade() {
-    caskroom=$(brew --prefix)/Caskroom
-    apps=( $(brew cask list) )
-    for app in ${apps[@]}; do
-      version=$(brew cask info $app | sed -n '1p' | sed -n 's/^.*: \(.*\)$/\1/p')
-      installed=( $(ls $caskroom/$app) )
-      if [[ " ${installed[@]} " == *" $version"* ]]; then
-        continue
-      fi
-      echo -n "want to upgrade $app to $version ? [Y/n]: "
-      read ANSWER
-      case $ANSWER in
-        "Y" | "Yes" | "y" | "yes" )
-          brew cask install $app --force
-          for dir in $installed; do
-            olddir=$caskroom/$app/$dir
-            echo "delete $olddir"
-            rm -rf "$olddir"
-          done
-        ;;
-      esac
-    done
-  }
-
-  # alias
-  alias ls="ls -G"
-  ;;
-# GNU
-linux*)
-  # alias
-  alias ls="ls --color=auto --show-control-chars"
-  alias pbcopy="xsel --clipboard --input"
-  alias pbpaste="xsel --clipboard --output"
-  ;;
-esac
-
 # rbenv plugin is broken
 eval "$(rbenv init -)"
 
@@ -82,11 +34,6 @@ alias g="git"
 alias tmux="tmux -2"
 alias less='less --tabs=4'
 alias javac="javac -J-Dfile.encoding=UTF8"
-
-# local zshrc
-if [ -f "$HOME/.zshrc-local" ]; then
-  source "$HOME/.zshrc-local"
-fi
 
 # neovim
 if [ -x "`which nvim`" ]; then
@@ -134,4 +81,21 @@ fi
 export PATH=$PATH:$HOME/.phpenv/bin
 if [ -x "`which phpenv`" ]; then
   eval "$(phpenv init -)"
+fi
+
+# zshrc for each os
+case "$OSTYPE" in
+# BSD (contains Mac)
+darwin*)
+  source "$HOME/.zshrc-darwin"
+  ;;
+# GNU
+linux*)
+  source "$HOME/.zshrc-linux"
+  ;;
+esac
+
+# local zshrc
+if [ -f "$HOME/.zshrc-local" ]; then
+  source "$HOME/.zshrc-local"
 fi
