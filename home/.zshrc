@@ -14,6 +14,9 @@ esac
 
 source $ZSH/oh-my-zsh.sh
 
+# auto-suggestions
+source $HOME/.homesick/repos/dotfiles/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # path
 export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:/opt/brew/bin:$PATH
 
