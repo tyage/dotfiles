@@ -83,6 +83,9 @@ if [ -x "`which phpenv`" ]; then
   eval "$(phpenv init -)"
 fi
 
+# set GPG TTY
+export GPG_TTY=$(tty)
+
 # zshrc for each os
 case "$OSTYPE" in
 # BSD (contains Mac)
