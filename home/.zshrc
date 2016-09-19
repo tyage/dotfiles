@@ -12,9 +12,6 @@ export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:
 # lang
 export LANG=en_US.UTF-8
 
-# rbenv plugin is broken
-eval "$(rbenv init -)"
-
 # perl
 if [ -x "$HOME/perl5" ]; then
   PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
