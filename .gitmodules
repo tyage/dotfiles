@@ -4,3 +4,6 @@
 [submodule "vendor/mathiasbynens-dotfiles"]
 	path = vendor/mathiasbynens-dotfiles
 	url = https://github.com/mathiasbynens/dotfiles.git
+[submodule "vendor/zsh-autosuggestions"]
+	path = vendor/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
