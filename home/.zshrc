@@ -1,6 +1,6 @@
 # oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="wedisagree"
+ZSH_THEME="muse"
 
 plugins=(common-alias git brew gem github ruby rbenv)
 
