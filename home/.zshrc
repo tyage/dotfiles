@@ -2,7 +2,15 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wedisagree"
 
-plugins=(common-alias osx git brew gem github ruby rbenv)
+plugins=(common-alias git brew gem github ruby rbenv)
+
+# plugins for each os
+case "$OSTYPE" in
+# BSD (contains Mac)
+darwin*)
+  plugins=($plugins osx)
+  ;;
+esac
 
 source $ZSH/oh-my-zsh.sh
 
