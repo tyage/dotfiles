@@ -25,6 +25,9 @@ function cask-upgrade() {
           olddir=$caskroom/$app/$dir
           echo "delete $olddir"
           rm -rf "$olddir"
+          oldmetadir=$caskroom/$app/.metadata/$dir
+          echo "delete $oldmetadir"
+          rm -rf "$oldmetadir"
         done
       ;;
     esac
