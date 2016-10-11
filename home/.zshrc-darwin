@@ -8,6 +8,7 @@ GTK_IM_MODULE=uim; export GTK_IM_MODULE
 XMODIFIERS="@im=uim"; export XMODIFIERS
 
 function cask-upgrade() {
+  brew cask update
   caskroom=$(brew --prefix)/Caskroom
   apps=( $(brew cask list) )
   for app in ${apps[@]}; do
