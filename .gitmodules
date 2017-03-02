@@ -7,3 +7,6 @@
 [submodule "vendor/zsh-autosuggestions"]
 	path = vendor/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "vendor/dein.vim"]
+	path = vendor/dein.vim
+	url = https://github.com/Shougo/dein.vim.git

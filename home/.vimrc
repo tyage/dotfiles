@@ -1,1 +1,39 @@
 source $HOME/.homesick/repos/dotfiles/vendor/mathiasbynens-dotfiles/.vimrc
+
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = expand('~/.homesick/repos/dotfiles/vendor/dein.vim')
+set runtimepath+=s:dein_repo_dir
+
+" Required:
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " Let dein manage dein
+  " Required:
+  call dein#add(s:dein_repo_dir)
+
+  " Add or remove your plugins here:
+  " call dein#add('Shougo/neosnippet-snippets')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
+
+"End dein Scripts-------------------------
+
