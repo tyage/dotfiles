@@ -19,7 +19,7 @@ if dein#load_state(s:dein_dir)
   call dein#add(s:dein_repo_dir)
 
   " Add or remove your plugins here:
-  " call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/deoplete.nvim')
 
   " Required:
   call dein#end()
@@ -31,9 +31,9 @@ filetype plugin indent on
 syntax enable
 
 " If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
+if dein#check_install()
+  call dein#install()
+endif
 
 "End dein Scripts-------------------------
 
