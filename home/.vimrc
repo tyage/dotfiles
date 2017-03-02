@@ -8,7 +8,7 @@ endif
 " Required:
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = expand('~/.homesick/repos/dotfiles/vendor/dein.vim')
-set runtimepath+=s:dein_repo_dir
+execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
 " Required:
 if dein#load_state(s:dein_dir)
