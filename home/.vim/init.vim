@@ -1,1 +1,1 @@
-/Users/tyage/.vimrc
+../.vimrc
