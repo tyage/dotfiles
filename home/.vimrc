@@ -2,7 +2,7 @@ source $HOME/.homesick/repos/dotfiles/vendor/mathiasbynens-dotfiles/.vimrc
 
 "dein Scripts-----------------------------
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible
 endif
 
 " Required:
@@ -17,6 +17,9 @@ if dein#load_state(s:dein_dir)
   let g:rc_dir = expand('~/.vim/rc')
   call dein#load_toml(g:rc_dir . '/dein.toml', {'lazy': 0})
   call dein#load_toml(g:rc_dir . '/dein_lazy.toml', {'lazy': 1})
+  if has('nvim')
+    call dein#load_toml(g:rc_dir . '/dein_neo.toml', {})
+  endif
 
   call dein#end()
   call dein#save_state()
@@ -26,10 +29,8 @@ endif
 filetype plugin indent on
 syntax enable
 
-if dein#check_install()
+if !has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 
 "End dein Scripts-------------------------
-
-let g:deoplete#enable_at_startup = 1
