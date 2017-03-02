@@ -31,8 +31,8 @@ filetype plugin indent on
 syntax enable
 
 " If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
+if dein#check_install('Shougo/deoplete.nvim')
+  call dein#install('Shougo/deoplete.nvim')
 endif
 
 "End dein Scripts-------------------------
