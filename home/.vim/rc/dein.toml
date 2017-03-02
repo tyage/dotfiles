@@ -1,5 +1,5 @@
 [[plugins]]
-repo = 'Shougo/dein.vim'
+repo = 'https://github.com/Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/deoplete.vim'
+repo = 'https://github.com/Shougo/deoplete.vim'
