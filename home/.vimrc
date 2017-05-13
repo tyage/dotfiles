@@ -46,10 +46,16 @@ set smartindent
 set showmatch
 
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
+set hlsearch
+set mouse=a
 set expandtab
 set tabstop=2
 set shiftwidth=2
 
+set clipboard=unnamed
+set binary
+set noeol
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
