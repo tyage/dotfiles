@@ -1,5 +1,3 @@
-source $HOME/.homesick/repos/dotfiles/vendor/mathiasbynens-dotfiles/.vimrc
-
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible
@@ -35,6 +33,25 @@ endif
 
 "End dein Scripts-------------------------
 
+syntax on
+colorscheme onedark
+
+set showmode
+set showcmd
+
+set number
+set cursorline
+set cursorcolumn
+set smartindent
+set showmatch
+
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set expandtab
 set tabstop=2
 set shiftwidth=2
+
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+if exists("&undodir")
+	set undodir=~/.vim/undo
+endif

@@ -10,3 +10,6 @@
 [submodule "vendor/dein.vim"]
 	path = vendor/dein.vim
 	url = https://github.com/Shougo/dein.vim.git
+[submodule "vendor/ondark.vim"]
+	path = vendor/ondark.vim
+	url = https://github.com/joshdick/onedark.vim.git
