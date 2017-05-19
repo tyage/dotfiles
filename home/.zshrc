@@ -94,6 +94,16 @@ fi
 # set GPG TTY
 export GPG_TTY=$(tty)
 
+# overwrite ghq function to execute just cd on `ghq look`
+ghq () {
+  if [ "$1" = look -a -n "$2" ]; then
+    cd $(command ghq list -e -p $2)
+    return
+ fi
+
+  command ghq "$@"
+}
+
 # zshrc for each os
 case "$OSTYPE" in
 # BSD (contains Mac)
