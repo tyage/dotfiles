@@ -45,14 +45,6 @@ set cursorcolumn
 set smartindent
 set showmatch
 
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
-set hlsearch
-set mouse=a
-set expandtab
-set tabstop=2
-set shiftwidth=2
-
 set clipboard=unnamed
 set binary
 set noeol
@@ -61,3 +53,11 @@ set directory=~/.vim/swaps
 if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
+
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
+set hlsearch
+set mouse=a
+set expandtab
+set tabstop=2
+set shiftwidth=2
