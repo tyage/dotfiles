@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="muse"
 
-plugins=(common-alias git gem github ruby rbenv)
+plugins=(common-aliases git gem github ruby rbenv)
 
 # plugins for each os
 case "$OSTYPE" in
