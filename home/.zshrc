@@ -117,7 +117,6 @@ bindkey '^]' peco-src
 
 # call compinit to make shell faster
 autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
 
 # zshrc for each os
 case "$OSTYPE" in
