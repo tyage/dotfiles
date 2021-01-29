@@ -7,33 +7,5 @@ export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 GTK_IM_MODULE=uim; export GTK_IM_MODULE
 XMODIFIERS="@im=uim"; export XMODIFIERS
 
-function cask-upgrade() {
-  brew update
-  caskroom=$(brew --prefix)/Caskroom
-  apps=( $(brew cask list) )
-  for app in ${apps[@]}; do
-    version=$(brew cask info $app | sed -n '1p' | sed -n 's/^.*: \(.*\)$/\1/p')
-    installed=( $(ls $caskroom/$app) )
-    if [[ " ${installed[@]} " == *" $version"* ]]; then
-      continue
-    fi
-    echo -n "want to upgrade $app to $version ? [Y/n]: "
-    read ANSWER
-    case $ANSWER in
-      "Y" | "Yes" | "y" | "yes" )
-        brew cask install $app --force
-        for dir in $installed; do
-          olddir=$caskroom/$app/$dir
-          echo "delete $olddir"
-          rm -rf "$olddir"
-          oldmetadir=$caskroom/$app/.metadata/$dir
-          echo "delete $oldmetadir"
-          rm -rf "$oldmetadir"
-        done
-      ;;
-    esac
-  done
-}
-
 # alias
 alias ls="ls -G"
