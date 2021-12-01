@@ -35,7 +35,7 @@ if [ -x "`which dircolors`" ]; then
 fi
 
 # editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # alias
 alias g="git"
