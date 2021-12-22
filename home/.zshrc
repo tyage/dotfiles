@@ -8,7 +8,7 @@ plugins=(common-aliases git gem github ruby rbenv)
 case "$OSTYPE" in
 # BSD (contains Mac)
 darwin*)
-  plugins=($plugins osx)
+  plugins=($plugins macos)
   ;;
 esac
 
@@ -18,7 +18,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.homesick/repos/dotfiles/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # path
-export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:/opt/brew/bin:$PATH
+export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$PATH
 
 # lang
 export LANG=en_US.UTF-8
