@@ -1,6 +1,12 @@
 # alias
 alias ls="ls --color=auto --show-control-chars"
-alias pbcopy="xsel --clipboard --input"
-alias pbpaste="xsel --clipboard --output"
 
-export PATH=/snap/bin:$PATH
+if command -v wl-copy >/dev/null 2>&1; then
+  alias pbcopy='wl-copy'
+  alias pbpaste='wl-paste --no-newline'
+elif command -v xsel >/dev/null 2>&1; then
+  alias pbcopy='xsel --clipboard --input'
+  alias pbpaste='xsel --clipboard --output'
+fi
+
+path=(/snap/bin $path)

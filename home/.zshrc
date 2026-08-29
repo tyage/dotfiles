@@ -12,65 +12,68 @@ darwin*)
   ;;
 esac
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # auto-suggestions
-source $HOME/.homesick/repos/dotfiles/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh
+autosuggestions="$HOME/.homesick/repos/dotfiles/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [[ -r "$autosuggestions" ]]; then
+  source "$autosuggestions"
+fi
+unset autosuggestions
 
 # path
-export PATH=/usr/texbin:/usr/local/opt/rbenv/shims:$HOME/.rbenv/shims:$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$PATH
+path=(
+  "$HOME/bin"
+  "$HOME/.local/bin"
+  "$HOME/.rbenv/shims"
+  /opt/homebrew/opt/ruby/bin
+  /opt/homebrew/bin
+  /usr/local/bin
+  /usr/local/sbin
+  $path
+)
+typeset -U path
+export PATH
 
 # lang
 export LANG=en_US.UTF-8
 
-# perl
-if [ -x "$HOME/perl5" ]; then
-  PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-  PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
-fi
-
 # color
-if [ -x "`which dircolors`" ]; then
+if command -v dircolors >/dev/null 2>&1; then
   eval "$(dircolors -b)"
 fi
 
-# editor
-export EDITOR=nvim
+# editor and neovim compatibility
+if command -v nvim >/dev/null 2>&1; then
+  export EDITOR=nvim
+  alias vim=nvim
+else
+  export EDITOR=vim
+fi
 
 # alias
 alias g="git"
-alias tmux="tmux -2"
 alias less='less --tabs=4'
 alias javac="javac -J-Dfile.encoding=UTF8"
 alias devinit='devcontainer templates apply -t ghcr.io/tyage/devcontainer/default:1 -w .'
 
-# neovim
-if [ -x "`which nvim`" ]; then
-  alias vim="nvim"
-fi
-
 # android home
-if [ -f "/usr/local/opt/android-sdk" ]; then
+if [[ -d "/usr/local/opt/android-sdk" ]]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
 fi
 
 # golang
-export GOPATH=~/.gopath
-export PATH=$GOPATH/bin:$PATH
+export GOPATH="${GOPATH:-$HOME/go}"
+path=("$GOPATH/bin" $path)
 
 # bindkey
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
-# opam
-if [ -x "`which opam`" ]; then
-  eval $(opam config env)
-fi
-
 # peco select history
 function peco-select-history() {
   local tac
-  if which tac > /dev/null; then
+  if command -v tac >/dev/null 2>&1; then
     tac="tac"
   else
     tac="tail -r"
@@ -81,53 +84,57 @@ function peco-select-history() {
   CURSOR=$#BUFFER
   zle clear-screen
 }
-if [ -x "`which peco`" ]; then
+if command -v peco >/dev/null 2>&1; then
   zle -N peco-select-history
   bindkey '^r' peco-select-history
 fi
 
 # phpenv
-export PATH=$PATH:$HOME/.phpenv/bin
-if [ -x "`which phpenv`" ]; then
+path+=("$HOME/.phpenv/bin")
+if command -v phpenv >/dev/null 2>&1; then
   eval "$(phpenv init -)"
 fi
 
 # set GPG TTY
-export GPG_TTY=$(tty)
+if tty >/dev/null 2>&1; then
+  export GPG_TTY="$(tty)"
+fi
 
 # overwrite ghq function to execute just cd on `ghq look`
 ghq () {
-  if [ "$1" = look -a -n "$2" ]; then
-    cd $(command ghq list -e -p $2)
+  if [[ "${1:-}" == "look" && -n "${2:-}" ]]; then
+    local repo
+    repo="$(command ghq list -e -p "$2")" || return
+    [[ -n "$repo" ]] && cd "$repo"
     return
- fi
+  fi
 
   command ghq "$@"
 }
 # search ghq in peco
 function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
+  local selected_dir
+  selected_dir="$(command ghq list -p | peco --query "$LBUFFER")"
+  if [[ -n "$selected_dir" ]]; then
+    BUFFER="cd ${(q)selected_dir}"
     zle accept-line
   fi
   zle clear-screen
 }
-zle -N peco-src
-bindkey '^]' peco-src
-
-# call compinit to make shell faster
-autoload -U +X compinit && compinit
+if command -v ghq >/dev/null 2>&1 && command -v peco >/dev/null 2>&1; then
+  zle -N peco-src
+  bindkey '^]' peco-src
+fi
 
 # zshrc for each os
 case "$OSTYPE" in
 # BSD (contains Mac)
 darwin*)
-  source "$HOME/.zshrc-darwin"
+  [[ -r "$HOME/.zshrc-darwin" ]] && source "$HOME/.zshrc-darwin"
   ;;
 # GNU
 linux*)
-  source "$HOME/.zshrc-linux"
+  [[ -r "$HOME/.zshrc-linux" ]] && source "$HOME/.zshrc-linux"
   ;;
 esac
 

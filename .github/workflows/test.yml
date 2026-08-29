@@ -1,0 +1,52 @@
+name: Test dotfiles
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Install test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes tmux zsh
+
+      - name: Check shell syntax
+        run: |
+          bash -n scripts/macos.sh
+          zsh -n home/.zshrc home/.zshrc-darwin home/.zshrc-linux
+
+      - name: Load zsh configuration
+        run: |
+          test_home="$(mktemp -d)"
+          mkdir -p "$test_home/.homesick/repos"
+          ln -s "$GITHUB_WORKSPACE" "$test_home/.homesick/repos/dotfiles"
+          ln -s "$GITHUB_WORKSPACE/home/.oh-my-zsh" "$test_home/.oh-my-zsh"
+          ln -s "$GITHUB_WORKSPACE/home/.zshrc-linux" "$test_home/.zshrc-linux"
+          HOME="$test_home" zsh -df -c 'source "$GITHUB_WORKSPACE/home/.zshrc"'
+
+      - name: Load tmux configuration
+        run: |
+          tmux -L dotfiles-test -f "$GITHUB_WORKSPACE/home/.tmux.conf" new-session -d -s test
+          tmux -L dotfiles-test show-options -g mouse | grep -Fx 'mouse on'
+          tmux -L dotfiles-test kill-server
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check configuration syntax
+        run: |
+          bash -n scripts/macos.sh
+          zsh -n home/.zshrc home/.zshrc-darwin home/.zshrc-linux
+          brew bundle list --file "$GITHUB_WORKSPACE/Brewfile" >/dev/null

@@ -46,8 +46,6 @@ set smartindent
 set showmatch
 
 set clipboard=unnamed
-set binary
-set noeol
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
