@@ -28,5 +28,8 @@ On macOS, install the command-line tools in `Brewfile` with:
 
 ```sh
 homesick pull dotfiles
-homesick link dotfiles
 ```
+
+The existing symlinks reflect pulled changes immediately. Run
+`homesick link dotfiles` interactively only when the repository adds a new
+managed path.
