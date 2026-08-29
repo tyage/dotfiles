@@ -1,41 +1,33 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# install brew
-echo "install brew"
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+set -euo pipefail
 
-# install packages
-echo "install packages"
-brew install git tig vim wireshark p7zip node wget nginx peco zsh
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "This script only supports macOS." >&2
+  exit 1
+fi
 
-# chsh for zsh
-echo "chsh for zsh"
-sudo echo "/usr/local/bin/zsh" >> /etc/shells
-chsh -s /usr/local/bin/zsh
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-# setup for ruby
-echo "setup for ruby"
-brew install rbenv ruby-build
-rbenv install 2.3.0
-rbenv global 2.3.0
-gem install bundle
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-# install applications
-echo "install applications"
-brew cask install gyazo skype dropbox slack dash night-owl virtualbox atom tunnelblick firefox google-japanese-ime gnucash vlc google-chrome google-drive
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 
-# homesick
-echo "homesick"
-gem install homesick
-homesick clone tyage/dotfiles
-homesick symlink
+brew bundle --file "$repo_root/Brewfile"
 
-# install mackerel-agent
-echo "install mackerel agent"
-brew tap mackerelio/mackerel-agent
-brew install mackerel-agent
+zsh_path="$(command -v zsh)"
+if ! grep -Fxq "$zsh_path" /etc/shells; then
+  echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+fi
 
-# install source code pro
-echo "install source code pro"
-brew tap caskroom/fonts
-brew cask install font-source-code-pro
+if [[ "$SHELL" != "$zsh_path" ]]; then
+  chsh -s "$zsh_path"
+fi
+
+echo "macOS command-line setup complete."
