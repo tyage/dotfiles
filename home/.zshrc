@@ -42,6 +42,7 @@ alias g="git"
 alias tmux="tmux -2"
 alias less='less --tabs=4'
 alias javac="javac -J-Dfile.encoding=UTF8"
+alias devinit='devcontainer templates apply -t ghcr.io/tyage/devcontainer/default:1 -w .'
 
 # neovim
 if [ -x "`which nvim`" ]; then
