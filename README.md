@@ -21,7 +21,7 @@ homesick link dotfiles
 On macOS, install the command-line tools in `Brewfile` with:
 
 ```sh
-~/.homesick/repos/dotfiles/scripts/osx.sh
+~/.homesick/repos/dotfiles/scripts/macos.sh
 ```
 
 ## Update

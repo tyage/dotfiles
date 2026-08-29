@@ -22,7 +22,7 @@ jobs:
 
       - name: Check shell syntax
         run: |
-          bash -n scripts/osx.sh
+          bash -n scripts/macos.sh
           zsh -n home/.zshrc home/.zshrc-darwin home/.zshrc-linux
 
       - name: Load zsh configuration
@@ -47,6 +47,6 @@ jobs:
 
       - name: Check configuration syntax
         run: |
-          bash -n scripts/osx.sh
+          bash -n scripts/macos.sh
           zsh -n home/.zshrc home/.zshrc-darwin home/.zshrc-linux
           brew bundle list --file "$GITHUB_WORKSPACE/Brewfile" >/dev/null
