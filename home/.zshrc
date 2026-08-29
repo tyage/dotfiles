@@ -28,10 +28,8 @@ path=(
   "$HOME/.rbenv/shims"
   /opt/homebrew/opt/ruby/bin
   /opt/homebrew/bin
-  /usr/local/opt/ruby/bin
   /usr/local/bin
   /usr/local/sbin
-  /Library/TeX/texbin
   $path
 )
 typeset -U path
@@ -39,12 +37,6 @@ export PATH
 
 # lang
 export LANG=en_US.UTF-8
-
-# perl
-if [[ -d "$HOME/perl5" ]]; then
-  PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-  PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
-fi
 
 # color
 if command -v dircolors >/dev/null 2>&1; then
@@ -77,11 +69,6 @@ path=("$GOPATH/bin" $path)
 # bindkey
 bindkey -v
 bindkey '^R' history-incremental-search-backward
-
-# opam
-if command -v opam >/dev/null 2>&1; then
-  eval "$(opam env --shell=zsh)"
-fi
 
 # peco select history
 function peco-select-history() {
